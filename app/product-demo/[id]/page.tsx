@@ -4,6 +4,7 @@ import ProductImage from "@/components/ProductImage";
 import { Dialog } from "@headlessui/react";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -95,12 +96,12 @@ function Modal() {
                     <button className="button w-full bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black">
                       Add to bag
                     </button>
-                    <button
-                      onClick={() => window.location.reload()}
-                      className="button w-full bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent"
+                    <Link
+                      href={`/product/${id}`}
+                      className="button w-full block text-center display-b bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent"
                     >
                       View full details
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
