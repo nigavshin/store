@@ -7,7 +7,7 @@ async function Profile() {
   return (
     <div className="my-40">
       <h1>Profile of {session?.user?.name}</h1>
-      {session?.user?.image && <img src={session.user.image} alt="user"/>}
+      {session?.user?.image && <img src={session.user.image} alt="user" />}
     </div>
   );
 }

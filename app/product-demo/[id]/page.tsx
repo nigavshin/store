@@ -9,7 +9,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Modal() {
-  let [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const id = useParams().id;
   const [product, setProduct] = useState<Product>();
   const [isLoading, setIsisLoading] = useState(false);
@@ -44,7 +44,7 @@ function Modal() {
         <div className="flex min-h-full items-center justify-center p-4">
           <Dialog.Panel className="mx-auto max-w-3xl rounded bg-white p-10">
             {isLoading ? (
-              <div className="h-8 w-8 rounded-full border-2 border-dotted border-blue-600 animate-spin" />
+              <div className="h-8 w-8 rounded-full border-2 border-dotted border-yellow-600 animate-spin" />
             ) : (
               <div className="flex gap-x-8 h-96">
                 {product?.image && (
@@ -93,12 +93,12 @@ function Modal() {
                   </div>
 
                   <div className="space-y-3 text-sm">
-                    <button className="button w-full bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black">
+                    <button className="button w-full bg-yellow-300 text-black border-none hover:border-yellow-400 hover:bg-yellow-400 hover:text-black">
                       Add to bag
                     </button>
                     <Link
                       href={`/product/${id}`}
-                      className="button w-full block text-center display-b bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent"
+                      className="button w-full block text-center display-b bg-transparent border-yellow-300 hover:bg-yellow-400 hover:text-black"
                     >
                       View full details
                     </Link>

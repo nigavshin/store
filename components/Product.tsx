@@ -8,7 +8,7 @@ type Props = {
 function Product({ product }: Props) {
   return (
     <Link
-      // prefetch={false}
+      scroll={false}
       href={`/product-demo/${product.id}`}
       className="h-96 flex flex-col p-5 rounded border group hover:scale-105 transition-transform ease-out duration-200"
     >
@@ -22,6 +22,7 @@ function Product({ product }: Props) {
       <p className="italic text-xs w-64 line-clamp-2 text-gray-600">
         {product.description}
       </p>
+      <p>{product.category}</p>
     </Link>
   );
 }
