@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function Header() {
+  const session = useSession();
+
   return (
     <header className="flex items-center px-4 md:px-12 py-2 justify-between fixed top-0 w-full bg-white z-50 shadow">
       <Link href="/">
@@ -21,6 +26,22 @@ function Header() {
           Sign up
         </button>
       </div>
+      {session?.data && <Link href="/profile">Profile</Link>}
+
+      {session?.data ? (
+        <Link
+          href="#"
+          onClick={() => {
+            signOut({
+              callbackUrl: "/",
+            });
+          }}
+        >
+          Sign out
+        </Link>
+      ) : (
+        <Link href="/signin">Sign In</Link>
+      )}
     </header>
   );
 }
