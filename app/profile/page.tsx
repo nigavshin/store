@@ -8,7 +8,7 @@ async function Profile() {
   return (
     <div className="my-40">
       <h1>Profile of {session?.user?.name}</h1>
-      {session?.user?.image && <Image src={session.user.image} alt="user" />}
+      {session?.user?.image && <Image width={80} height={80} src={session.user.image} alt="user" />}
     </div>
   );
 }

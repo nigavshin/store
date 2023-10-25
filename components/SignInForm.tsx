@@ -3,8 +3,7 @@
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FormEventHandler } from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { validationSchema } from "@/schemas";
 
 const DEFAULT_STATE_FORM = {
@@ -23,21 +22,19 @@ function SignInForm() {
     validateOnBlur: false,
     onSubmit: (values) => {
       console.log(values);
+      handleSubmit(values.email,values.password);
     },
   });
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-
+  const handleSubmit = async (email: string, password: string) => {
     const res = await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email: email,
+      password: password,
       redirect: false,
     });
 
-    if (res && !res.error) {
+    if (res && !res?.error) {
       router.push("/profile");
     } else {
       console.log(res);
@@ -45,15 +42,23 @@ function SignInForm() {
     }
   };
 
+  // useEffect(() => {
+  //   async function fetchProduct() {
+  //     setIsisLoading(true);
+  //     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  //     const product = await res.json();
+
+  //     setProduct(product);
+
+  //     setIsisLoading(false);
+  //   }
+
+  //   fetchProduct();
+  // }, [id]);
+
   return (
     // <form onSubmit={handleSubmit} className="flex flex-col">
-    <form
-      onSubmit={(event) => {
-        formik.handleSubmit();
-        handleSubmit(event);
-      }}
-      className="flex flex-col"
-    >
+    <form onSubmit={formik.handleSubmit} className="flex flex-col">
       <div className="flex rounded-md shadow-sm ring-1 ring-inset mb-2 ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400 sm:max-w-md">
         <input
           type="text"
