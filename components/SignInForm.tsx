@@ -42,22 +42,7 @@ function SignInForm() {
     }
   };
 
-  // useEffect(() => {
-  //   async function fetchProduct() {
-  //     setIsisLoading(true);
-  //     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-  //     const product = await res.json();
-
-  //     setProduct(product);
-
-  //     setIsisLoading(false);
-  //   }
-
-  //   fetchProduct();
-  // }, [id]);
-
   return (
-    // <form onSubmit={handleSubmit} className="flex flex-col">
     <form onSubmit={formik.handleSubmit} className="flex flex-col">
       <div className="flex rounded-md shadow-sm ring-1 ring-inset mb-2 ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400 sm:max-w-md">
         <input
