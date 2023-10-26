@@ -28,6 +28,7 @@ export const authConfig: AuthOptions = {
             }
         })
     ],
+    secret: process.env.NEXTAUTH_URL,
     pages: {
         signIn: '/signin'
     }
