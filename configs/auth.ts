@@ -28,6 +28,7 @@ export const authConfig: AuthOptions = {
             }
         })
     ],
+    secret: 'NxqenVHikc+L/7w9vsIhqeQxmIzICMc9cU9cQYjIZ0s=',
     pages: {
         signIn: '/signin'
     }
