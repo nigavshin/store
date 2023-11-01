@@ -7,3 +7,7 @@
     @apply border px-5 md:px-10 py-2.5 rounded font-normal transition duration-200 ease-out;
   }
 }
+
+input {
+  @apply w-[400px] border rounded-md border-gray-200 py-2 px-6 bg-zinc-100/40
+} 

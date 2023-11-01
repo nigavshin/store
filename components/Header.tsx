@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import Logout from "./logout";
 
-function Header() {
-  const session = useSession();
-
+async function Header() {
+  const session = await getServerSession();
   return (
     <header className="flex items-center px-4 md:px-12 py-4 justify-between fixed top-0 w-full bg-white z-50 shadow">
       <Link href="/" scroll={false}>
@@ -20,33 +18,15 @@ function Header() {
       </Link>
 
       <div className="flex items-center space-x-2.5 text-sm">
-        {session?.data && (
-          <Link scroll={false}
-            className="button bg-yellow-300 text-black border-none hover:bg-yellow-400"
-            href="/profile"
-          >
-            Profile
-          </Link>
-        )}
+        {!!session && <Logout />}
 
-        {session?.data ? (
-          <Link scroll={false}
-            className="button bg-transparent border-yellow-300 hover:bg-yellow-400 hover:text-black hover:border-yellow-400"
-            href="#"
-            onClick={() => {
-              signOut({
-                callbackUrl: "/",
-              });
-            }}
-          >
-            Sign out
-          </Link>
-        ) : (
-          <Link scroll={false}
+        {!session && (
+          <Link
+            scroll={false}
             className="button bg-yellow-300 text-black border-none hover:bg-yellow-400"
-            href="/signin"
+            href="/login"
           >
-            Sign In
+            Login
           </Link>
         )}
       </div>

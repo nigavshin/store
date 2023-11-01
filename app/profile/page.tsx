@@ -1,16 +1,11 @@
-import { authConfig } from "@/configs/auth";
-import { getServerSession } from "next-auth/next";
-import Image from "next/image";
+import ProfileInfo from "@/components/ProfileInfo";
 
-async function Profile() {
-  const session = await getServerSession(authConfig);
-
+function ProfilePage() {
   return (
-    <div className="my-40">
-      <h1>Profile of {session?.user?.name}</h1>
-      {session?.user?.image && <Image width={80} height={80} src={session.user.image} alt="user" />}
+    <div>
+      <ProfileInfo />
     </div>
   );
 }
 
-export default Profile;
+export default ProfilePage;
