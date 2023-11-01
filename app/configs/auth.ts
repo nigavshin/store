@@ -40,6 +40,6 @@ export const authConfig: AuthOptions = ({
                 return null
             }
         })
-    ]
-
+    ],
+    secret: process.env.NEXTAUTH_SECRET,
 })
