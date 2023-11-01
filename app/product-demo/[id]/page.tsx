@@ -26,7 +26,11 @@ function Modal() {
       setIsisLoading(false);
     }
 
-    fetchProduct();
+    try {
+      fetchProduct();
+    } catch {
+      console.log("Error");
+    }
   }, [id]);
 
   return (

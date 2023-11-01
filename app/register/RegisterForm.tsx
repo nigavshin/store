@@ -5,7 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {  useState } from "react";
+import { useState } from "react";
 
 const DEFAULT_STATE_FORM = {
   name: "",
@@ -14,7 +14,7 @@ const DEFAULT_STATE_FORM = {
 };
 
 function RegisterForm() {
-  const router = useRouter()
+  const router = useRouter();
   const [error, setError] = useState("");
 
   const formik = useFormik({
@@ -32,28 +32,31 @@ function RegisterForm() {
     email: string,
     password: string
   ) => {
-    const response = await fetch(`api/auth/register`, {
-      method: "POST",
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-      }),
-    });
-
-    if (!response.ok) {
-      setError("Registration failed");
-    } else {
-      router.push('/successful-registration');
-      router.refresh()
+    try {
+      const response = await fetch(`api/auth/register`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
+      });
+      if (!response.ok) {
+        setError("Registration failed");
+      } else {
+        router.push("/successful-registration");
+        router.refresh();
+      }
+    } catch {
+      return null;
     }
   };
 
   return (
     <div className="grid place-items-center h-screen">
       <div className=" relative shadow-lg p-5 rounded-lg border-t-4 border-yellow-400">
-      <Link href={"/"} className="block w-4 absolute top-5 right-7">
-          <XMarkIcon width={25}/>
+        <Link href={"/"} className="block w-4 absolute top-5 right-7">
+          <XMarkIcon width={25} />
         </Link>
         <h1 className="text-xl font-bold my-4">Register</h1>
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-3">
